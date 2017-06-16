@@ -3,13 +3,18 @@
 This is the master repo for the Raspberry Pi controlled LEDs. This code will contain all of the web interfacing and have the light-controlling code as a submodule.
 
 ## Installation
+### Dependencies
+This repo requires [python 3](https://www.python.org/downloads/), pip3 (comes with python 3) and [yarn](https://yarnpkg.com/lang/en/docs/install/).  
+  
 **Highly recommend installing/using a virtualenv for python 3**  
+This prevents issues with the wrong python version being used and any version issues with other dependencies you may have installed (or install in the future).  
 ### Setting up a Virtual Env
-`$ python3 -m venv {folder_name (I like venv) }`  
-| Command | Description  
-| ---- | ----  
-| `$ . {folder_name}/bin/activate` | Activate Virtual Env.  
-| `$ deactivate` | Deactivates the Virtual Env.  
+Command                          |  Description
+-------                          |  -----------
+`$ python3 -m venv {folder_name (I like venv) }` | Sets up Virtual Env.
+`$ . {folder_name}/bin/activate` | Activate Virtual Env.
+`$ deactivate`                   | Deactivates the Virtual Env.                      
+
 
 ### Installing Python dependencies
 Since this is a Flask app, we have to intall a few dependencies for python. This can be done with pip.  
