@@ -17,5 +17,11 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
-  }
+  },
+	"scripts":{
+		"start": "open http://localhost:5000 && flask run",
+		"prestart": "webpack",
+		"watch": "webpack --watch",
+		"run": "flask run"
+	}
 }
