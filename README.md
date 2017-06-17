@@ -37,9 +37,11 @@ To fix this, we can run webpack in watch mode.
 1. Open a new terminal window and cd into this repo.
 2. `$ yarn watch`
 3. Swtich tabs in terminal
-4. `$ yarn run`
+4. `$ yarn run run`
   
 Now, any updates to assets like source Javascript will result in webpack re-bundling this for us. All we have to do is reload our webpage and flask should serve us a new static page that reflects those updates.
 *If this does not happen, please make sure that either flask does not allow caching or that you remove the cached files in your browser*  
 
-
+If you use vim, then I suggest using this [plugin](https://github.com/andreax79/vim-on-write) to refresh your browser on buffer write. I use Chrome, so my command is   
+`sleep 3 && osascript -e 'tell application "Google Chrome" to tell the active tab of its first window to reload' `  
+This way, the 3 seconds is plenty of time for webpack to do all the bundling it needs, and then the apple script will reload the active tab I have (which should be the flask app anyways :P) 

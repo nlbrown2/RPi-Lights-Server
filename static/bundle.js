@@ -9787,7 +9787,7 @@ console.log('Hello world?');
 _reactDom2.default.render(_react2.default.createElement(
   'p',
   null,
-  ' rendered in react!, I have been changed '
+  ' hi testing '
 ), document.getElementById('mount'));
 
 /***/ }),
