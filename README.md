@@ -5,6 +5,8 @@ This is the master repo for the Raspberry Pi controlled LEDs. This code will con
 ## Installation
 ### Dependencies
 This repo requires [python 3](https://www.python.org/downloads/), pip3 (comes with python 3) and [yarn](https://yarnpkg.com/lang/en/docs/install/).  
+
+
   
 **Highly recommend installing/using a virtualenv for python 3**  
 This prevents issues with the wrong python version being used and any version issues with other dependencies you may have installed (or install in the future).  
@@ -19,7 +21,7 @@ Command                          |  Description
 ### Installing Python dependencies
 Since this is a Flask app, we have to intall a few dependencies for python. This can be done with pip.  
 `$ pip install -r requirements.txt`  
-
+A notable dependency is 
 ### Installing Web Dependencies
 Since this also builds a website using webpack and React.JS, we use yarn to manage those dependencies.   
 `$ yarn install`  
@@ -45,3 +47,6 @@ Now, any updates to assets like source Javascript will result in webpack re-bund
 If you use vim, then I suggest using this [plugin](https://github.com/andreax79/vim-on-write) to refresh your browser on buffer write. I use Chrome, so my command is   
 `sleep 3 && osascript -e 'tell application "Google Chrome" to tell the active tab of its first window to reload' `  
 This way, the 3 seconds is plenty of time for webpack to do all the bundling it needs, and then the apple script will reload the active tab I have (which should be the flask app anyways :P) 
+
+## How everything comes together
+This repo uses webpack to manage our assets. Basically, we allow it to bundle all the React code together into one browser-friendly JS file. In addition, it will also manage things such as images and styles. This Python [plugin](https://github.com/nickjj/flask-webpack) allows flask to easily use webpack to manage its assets. This plugin relies on a [plugin](https://github.com/nickjj/manifest-revision-webpack-plugin) for Webpack. Basically, The Webpack plugin will generate a manifest.json file in the directiory specified in the webpack.config.js that flask can then read in (set up in app config dictionary) and thus can then translate calls for assets in Jinja templates. It's pretty neat, because webpack will put on an md5 hash into the filename for the asset (hence the need for a manifest.json file). This allows for version control. I have webpack set up to put the bundled file(s) into the static folder so they are easily accessible by flask (although they don't have to be in static, as that folder can be adjusted in the flask config settings in flask\_app.py). 
