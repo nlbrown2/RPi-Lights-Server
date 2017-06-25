@@ -19,3 +19,8 @@ webpack.init_app(app)
 def start():
     print(app.root_path + 'src/')
     return render_template('index.html')
+
+@app.route('/signedIn')
+def signedIn():
+    print("Sign in success!")
+    return render_template('signedIn.html')

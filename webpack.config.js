@@ -6,7 +6,7 @@ const PATHS = {
 };
 
 module.exports = {
-	entry: './src/main.js',
+	entry: PATHS.src + '/main.js',
   output: {
         path: PATHS.dist,
         filename: '[name].[chunkhash].js',
