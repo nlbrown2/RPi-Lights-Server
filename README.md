@@ -21,7 +21,10 @@ Command                          |  Description
 ### Installing Python dependencies
 Since this is a Flask app, we have to intall a few dependencies for python. This can be done with pip.  
 `$ pip install -r requirements.txt`  
-A notable dependency is 
+
+### Setting up HTTPS connection
+At the time of this creation, TLS is a secure protocol. To set up the server to use TLS, this [link](http://werkzeug.pocoo.org/docs/0.12/serving/#ssl) will likely be the best place. Currently, it is configured by making an SSL key using `make_ssl_devcert` from werkzeug.serving, then using pyOpenSSL to generate a context with those keys and specifying TLS protocols, and specifying private key/certificate files. All of this is dependent upon OpenSSL, which can be found [here](https://www.openssl.org/source/). I would recommend downloading the long term stable release, but the most recent one may be more secure. If you have to upgrage your version of OpenSSL (which is a good thing), I recommend using brew: `brew upgrade`. If you do openssl version and still see the old version, do `brew info` and add the path it gives you to your PATH variable `$ export PATH=[path from brew]:$PATH`.  
+
 ### Installing Web Dependencies
 Since this also builds a website using webpack and React.JS, we use yarn to manage those dependencies.   
 `$ yarn install`  
