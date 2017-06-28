@@ -25,6 +25,6 @@
     "start": "open http://localhost:5000 && flask run",
     "prestart": "webpack",
     "watch": "webpack --watch",
-    "run": "flask run"
+    "run": "python flask_app.py"
   }
 }

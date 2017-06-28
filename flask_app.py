@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_webpack import Webpack
+import ssl
 
 webpack = Webpack()
 
@@ -13,6 +14,8 @@ params = {
 app.config.update( params )
 
 webpack.init_app(app)
+context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+context.load_cert_chain(app.root_path + '/security/ssl.cert', app.root_path + '/security/ssl.key')
 
 
 @app.route('/')
@@ -24,3 +27,11 @@ def start():
 def signedIn():
     print("Sign in success!")
     return render_template('signedIn.html')
+
+@app.route('/test')
+def testRequest():
+    print("Got a request")
+    print(request.headers)
+    return 'hi'
+
+app.run(host='127.0.0.1', debug = True, ssl_context=context)
