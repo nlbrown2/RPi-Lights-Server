@@ -34,4 +34,4 @@ def testRequest():
     print(request.headers)
     return 'hi'
 
-app.run(host='127.0.0.1', debug = True, ssl_context=context)
+app.run(host='127.0.0.1', debug = False, ssl_context=context)

@@ -6,18 +6,18 @@ const PATHS = {
 };
 
 module.exports = {
-	entry: PATHS.src + '/main.js',
+	entry: './src/jsx/main.jsx',
   output: {
         path: PATHS.dist,
         filename: '[name].[chunkhash].js',
 	},
 	module: {
 		rules: [
-			{ 
-				test: /\.jsx?$/, 
+			{
+				test: /\.jsx?$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/
-				
+
 			},{
 				test: /\.swp?$/,
 				loader: 'ignore-loader'
@@ -26,8 +26,8 @@ module.exports = {
 	},
 	plugins: [
     new ManifestRevisionPlugin(path.join('build', 'manifest.json'), {
-        rootAssetPath: PATHS.src,
-        ignorePaths: ['/stylesheets', '/javascript']
+				rootAssetPath: PATHS.src,
+        ignorePaths: ['/jsx', '/javascript']
     })
   ]
 };
