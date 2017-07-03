@@ -26,6 +26,7 @@ class App extends Component {
       tosUrl: '<your-tos-url>'
     };
     // Initialize the FirebaseUI Widget using Firebase.
+
     // The start method will wait until the DOM is loaded.
     this.firebase = firebase.initializeApp(config);
     this.auth = this.firebase.auth();
