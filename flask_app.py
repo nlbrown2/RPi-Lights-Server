@@ -20,7 +20,6 @@ context.load_cert_chain(app.root_path + '/security/ssl.cert', app.root_path + '/
 
 @app.route('/')
 def start():
-    print(app.root_path + 'src/')
     return render_template('index.html')
 
 @app.route('/signedIn')
@@ -34,4 +33,4 @@ def testRequest():
     print(request.headers)
     return 'hi'
 
-app.run(host='127.0.0.1', debug = False, ssl_context=context)
+app.run(host='127.0.0.1')
