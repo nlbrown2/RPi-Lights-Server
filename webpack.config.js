@@ -6,7 +6,10 @@ const PATHS = {
 };
 
 module.exports = {
-	entry: './src/jsx/main.jsx',
+  entry: {
+    main: './src/jsx/main.jsx',
+    signedIn: './src/jsx/APIButton.jsx'
+  },
   output: {
         path: PATHS.dist,
         filename: '[name].[chunkhash].js',
@@ -19,15 +22,15 @@ module.exports = {
 				exclude: /node_modules/
 
 			},{
-				test: /\.swp?$/,
+        test: /^.+\.sw[px]$/,
 				loader: 'ignore-loader'
-			}
-		]
+      }
+    ]
 	},
 	plugins: [
     new ManifestRevisionPlugin(path.join('build', 'manifest.json'), {
 				rootAssetPath: PATHS.src,
-        ignorePaths: ['/jsx', '/javascript']
+        ignorePaths: ['/jsx', '/services']
     })
   ]
 };

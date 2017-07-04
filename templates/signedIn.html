@@ -2,59 +2,8 @@
 <head>
 </head>
 	<body> 
-		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script>
-		  // Initialize Firebase
-		  var config = {
-		    apiKey: "AIzaSyD8aV_iPuJrkx-GAuT5hv67cHMfFGfrxig",
-		    authDomain: "rpi-lights.firebaseapp.com",
-		    databaseURL: "https://rpi-lights.firebaseio.com",
-		    projectId: "rpi-lights",
-		    storageBucket: "rpi-lights.appspot.com",
-		    messagingSenderId: "407575179834"
-		  };
-		  firebase.initializeApp(config);
-		</script>
-		<script>
-			firebase.auth().onAuthStateChanged(function(user) {
-			  if (user) {
-			    // User is signed in.
-			    var displayName = user.displayName;
-			    var email = user.email;
-			    var emailVerified = user.emailVerified;
-			    var photoURL = user.photoURL;
-			    var isAnonymous = user.isAnonymous;
-			    var uid = user.uid;
-			    var providerData = user.providerData;
-					console.log(user);
-					console.log(user.displayName);
-					console.log(user.getIdToken());
-			    // ...
-			  } else {
-			    // User is signed out.
-			    // ...
-					console.log("user is undefined");
-			  }
-			});
-		</script>
-	<button  id="sign-out" >Sign out</button>
-	<button id="test-request">Test API</button>
-			<script>
-document.getElementById('sign-out').onclick = () => { 
-			firebase.auth().signOut().then(() => {
-				var origin = window.location.origin;
-				window.location.assign(origin);
-			});
-};
-			</script>
-					<script>
-document.getElementById('test-request').onclick = () => {
-	firebase.auth().currentUser.getIdToken(true).then((idToken) => {
-		axios.get('https://127.0.0.1:5000/test', { headers: { 'id-token': idToken } } ).then((response) => console.log(response));
-	});
-}
-					</script>
-
-</body>
+    <div id='mount'></div>
+    <script src="{{ asset_url_for('signedIn.js') }}"> </script>
+  </body>
 </html>
