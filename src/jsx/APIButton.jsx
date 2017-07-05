@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as firebase from 'firebase';
+import axios from 'axios';
 import initalizeFirebase from '../services/initalizeFirebase.js';
+import apiConfig from '../services/apiConfig.js';
 
 class APIButton extends Component {
 
@@ -19,18 +21,17 @@ class APIButton extends Component {
     this.auth = this.firebase.auth();
     firebase.auth().onAuthStateChanged((user) => {
       if(user == null){
-        console.log('null user');
-      } else {
-        console.log(user);
-      }
+        const origin = window.origin;
+        window.location.assign(origin);
+      } 
     })
   }
 
   onPress(){
-    firebase.auth().signOut()
-    const origin = window.origin;
-    window.location.assign(origin);
-  }
+    firebase.auth().currentUser.getIdToken(true).then((idToken) => {
+      axios.get(apiConfig.baseURL + this.props.endpoint, { headers: { 'id-token': idToken } } ).then((response) => console.log(response));
+    });
+    }
 
   render(){
     return(
@@ -41,4 +42,4 @@ class APIButton extends Component {
   }
 }
 
-ReactDOM.render(<APIButton>Test Example</APIButton>, document.getElementById('mount'));
+ReactDOM.render(<APIButton endpoint='test'>Test Example</APIButton>, document.getElementById('mount'));
