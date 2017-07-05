@@ -3,5 +3,5 @@ __pycache__/flask_app.cpython-36.pyc*.swp
 *.py[cod]
 static
 security
-build/
+build/manifest.json
 *.swp
