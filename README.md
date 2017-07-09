@@ -5,7 +5,9 @@ This is the master repo for the Raspberry Pi controlled LEDs. This code will con
 ## Installation
 
 ### Pre-requisites
-Set up a MQTT Broker. Please use your own broker and not mine (I can't handle more connections on a free plan). You can get one for free with [cloudMQTT](https://www.cloudmqtt.com/), so there is no reason to use mine. After setting up your MQTT broker, have all MQTT clients connect to that broker and not mine. This is done by modifying any connect funcitons on an MQTT client (there will be one in backend.py and one in the frontend code, likely mqtt.js).
+Set up a MQTT Broker. Please use your own broker and not mine (I can't handle more connections on a free plan). You can get one for free with [cloudMQTT](https://www.cloudmqtt.com/), so there is no reason to use mine. After setting up your MQTT broker, have all MQTT clients connect to that broker and not mine. This is done by modifying any connect funcitons on an MQTT client (there will be one in backend.py and one in the frontend code, likely mqtt.js).  
+:w
+
 ### Dependencies
 This repo requires [python 3](https://www.python.org/downloads/), pip3 (comes with python 3) and [yarn](https://yarnpkg.com/lang/en/docs/install/).  
 I would use Python 3.6 or newer, as this repo was build with Python 3.6 and there is no reason (especially with virtual environments) to use older versions of python 3. You can try it, but it may not work.
@@ -51,3 +53,8 @@ This way, the 3 seconds is plenty of time for webpack to do all the bundling it 
 
 ## How everything comes together
 The frontend is completely independent and can be hosted on pretty much any static hosting service. The front-end will write MQTT messages to certain topics and subscribe to other topics. These messages are sent over TLS websockets to the MQTT broker (if you use a custom broker, you need to enable TLS on your websockets). These messages are recieved by the backend that is subscribed to them and the backend then handles these similarly to API endpoints. 
+
+## Shout Outs
+Chris Knebel for giving this project a purpose by writing the code that allows the lights to do cool thinks.  
+A big shout out to select members of the IMS dev team for assistance with how to wire up the backend securely.  
+This [link](http://www.steves-internet-guide.com/mqtt/) for starter code on connecting to CloudMQTT broker. Thank you.  
