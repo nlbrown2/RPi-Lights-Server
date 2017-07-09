@@ -48,9 +48,9 @@ client.on_log = on_log
 
 # user name has to be called before connect - my notes.
 client.username_pw_set("RpiLightsClient", "T2c%I02504O&")
-# client.tls_set_context()
+client.tls_set('/etc/ssl/certs/ca-certificates.crt')
 
-client.connect('m12.cloudmqtt.com', 10048, 60)
+client.connect('m12.cloudmqtt.com', 20048, 60)
 
 # Continue the network loop, exit when an error occurs
 #rc = 0
