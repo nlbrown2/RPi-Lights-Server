@@ -27,6 +27,33 @@ class APIButton extends Component {
     })
   }
 
+  constructor(){
+    super();
+    this.state = {};
+    this.state.mqtt = new Paho.MQTT.Client("m12.cloudmqtt.com", 30048, "web_" + parseInt(Math.random() * 100, 10));
+    let options = {
+      useSSL: true,
+      userName: "RpiLightsClient",
+      password: "T2c%I02504O&",
+      onSuccess: () => {
+        console.log('success'); 
+        this.state.mqtt.subscribe("/lightmode"); 
+        console.log('subscribed');
+        console.log('success');
+        let message = new Paho.MQTT.Message("Hello Troutman"); 
+        console.log('created ', message);
+        message.destinationName = "/lightmode"; 
+        this.state.mqtt.send(message);
+        console.log('sent message');
+      },
+      onFailure:() => console.log('failure')
+    }
+    this.state.mqtt.onMessageArrived = (message) => {
+      console.log('message recieved: ', message);
+    }
+    this.state.mqtt.connect(options);
+  }
+
   onPress(){
     firebase.auth().currentUser.getIdToken(true).then((idToken) => {
       axios.get(apiConfig.baseURL + this.props.endpoint, { headers: { 'id-token': idToken } } ).then((response) => console.log(response));

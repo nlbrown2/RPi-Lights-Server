@@ -1919,6 +1919,10 @@ p-locate@^2.0.0:
   dependencies:
     p-limit "^1.1.0"
 
+paho-mqtt@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/paho-mqtt/-/paho-mqtt-1.0.3.tgz#3e7ff69ff0b608d43946b02f990b5d6010d9eaa1"
+
 pako@~0.2.0:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
